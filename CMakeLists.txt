@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+PROJECT ( psolib )
+INCLUDE_DIRECTORIES ( ../../include include )
+ADD_SUBDIRECTORY ( src )
+TARGET_LINK_LIBRARIES( psolib )
