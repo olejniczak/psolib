@@ -23,10 +23,11 @@ namespace psolib {
   class unknown_parameter : public std::exception
   {
     public:
-      unknown_parameter(const std::string& param_)
+      unknown_parameter(const std::string& param_) throw()
       {
         msg = "Unknown parameter: <" + param_ + ">.";
       }
+      ~unknown_parameter() throw();
       const char* what() const throw() { return msg.c_str(); }
     private:
       std::string msg;
@@ -35,10 +36,11 @@ namespace psolib {
   class parameter_type : public std::exception
   {
     public:
-      parameter_type(const std::string& param_, const std::string& type_)
+      parameter_type(const std::string& param_, const std::string& type_) throw()
       {
         msg = "Type of parameter: <" + param_ + "> is " + type_;
       }
+      ~parameter_type() throw();
       const char* what() const throw() { return msg.c_str(); }
     private:
       std::string msg;
