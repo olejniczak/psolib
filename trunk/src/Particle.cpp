@@ -1,10 +1,11 @@
 #include "Particle.hpp"
 
 #include <memory>
+#include <iostream>
 
 using namespace psolib;
 
-std::ostream& psolib::operator<<(std::ostream& os_, const Particle& p_)
+std::ostream& operator<<(std::ostream& os_, const Particle& p_)
 {
   os_ << p_.ToString() << std::endl;
   return os_;

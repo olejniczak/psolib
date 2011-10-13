@@ -12,7 +12,7 @@ class Comparator
   public:
     Comparator(MinMax mm_) : mm(mm_) {}
     void MiniMaxi(MinMax mm_) { mm = mm_; }
-    bool Comparator::operator() (PParticle a, PParticle b)
+    bool operator() (PParticle a, PParticle b)
     { 
       return mm == Minimize ? 
               a->Score() < b->Score() : 
