@@ -27,6 +27,8 @@
 
 namespace psolib {
 
+  std::ostream& operator<<(std::ostream& os_, const class Particle& p_);
+  
   class Velocity
   {
     public:
