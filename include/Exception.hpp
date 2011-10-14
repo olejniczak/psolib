@@ -27,7 +27,7 @@ namespace psolib {
       {
         msg = "Unknown parameter: <" + param_ + ">.";
       }
-      ~unknown_parameter() throw();
+      ~unknown_parameter() throw() {}
       const char* what() const throw() { return msg.c_str(); }
     private:
       std::string msg;
@@ -40,7 +40,7 @@ namespace psolib {
       {
         msg = "Type of parameter: <" + param_ + "> is " + type_;
       }
-      ~parameter_type() throw();
+      ~parameter_type() throw() {}
       const char* what() const throw() { return msg.c_str(); }
     private:
       std::string msg;
