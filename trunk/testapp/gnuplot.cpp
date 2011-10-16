@@ -1,5 +1,10 @@
 #include "gnuplot.h"
 
+#ifdef _WIN32 || _WIN64
+  #define popen _popen
+  #define pclose _pclose
+#endif
+
 gnuplot::gnuplot(const std::string& path_)
 {
     pipe = popen((path_ + " -persist").c_str(), "w");
