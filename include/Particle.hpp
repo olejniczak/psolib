@@ -27,9 +27,7 @@
 
 namespace psolib {
 
-  //std::ostream& operator<<(std::ostream& os_, const class Particle& p_);
-  
-  class Velocity
+    class Velocity
   {
     public:
       virtual ~Velocity() = 0;
@@ -155,6 +153,8 @@ namespace psolib {
 
       friend std::ostream& operator<<(std::ostream&, const Particle&);
   };
+  
+  std::ostream& operator<<(std::ostream& os_, const Particle& p_);
 
 } /* namespace psolib */
 

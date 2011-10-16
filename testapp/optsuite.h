@@ -1,8 +1,8 @@
 #ifndef OPTSUITE_H
 #define OPTSUITE_H
 
-#include <RealParticle.hpp>                                                                                                             
-#include <PSO.hpp>                                                                                                                      
+#include <RealParticle.hpp>
+#include <PSO.hpp>
 #include <muParser/muParser.h>
 
 class optimization_suite
