@@ -67,7 +67,7 @@ const Particle& Particle::UpdateBest()
   return *this;
 }
 
-Particle::~Particle() {} // virtual destructor
+//Particle::~Particle() {} // virtual destructor
 
 double Particle::Evaluate(bool flag_)
 {
