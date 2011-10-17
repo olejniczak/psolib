@@ -1,10 +1,26 @@
 /**
+ * @mainpage
+ * @par O PSOlib:
+ * Biblioteka programistyczna do optymalizacji za pomoc&#261; algorytmów PSO.
+ * @par Praca dyplomowa magisterska
+ * @par POLITECHNIKA WARSZAWSKA
+ * @par Wydzia&#322; Elektroniki i Technik Informacyjnych
+ * @par Instytut Automatyki
+ * @par Temat: Œrodowisko programistyczne do optymalizacji przy wykorzystaniu algorytmów inteligencji masowej.
+ * Praca wykonana pod kierunkiem
+ * Dr in?. Paw&#322;a Wnuka
+ * @author Przemys&#322;aw Olejniczak
+ * @date 2011.06.24
+ * @version 0.1.0
+*/
+
+/**
  * The following code declares class Algorithm,
  * base class for every variant of Particle Swarm Optimization
  *
  * See <WEBSITE> for documentation.
  *
- * @author Copyright &copy 2011 Przemys³aw Olejniczak.
+ * @author Copyright &copy 2011 Przemys&#322;aw Olejniczak.
  * @version <VERSION>
  * @date <DATE>
  * Distributed under the Boost Software License, Version 1.0.

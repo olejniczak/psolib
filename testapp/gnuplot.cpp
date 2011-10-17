@@ -1,13 +1,13 @@
 #include "gnuplot.h"
 
-#ifdef _WIN32 || _WIN64
+#if defined(_WIN32) || defined(_WIN64)
   #define popen _popen
   #define pclose _pclose
 #endif
 
 gnuplot::gnuplot(const std::string& path_)
 {
-    pipe = popen((path_ + " -persist").c_str(), "w");
+    pipe = popen((path_ + "gnuplot -persist").c_str(), "w");
 }
 
 gnuplot::~gnuplot()

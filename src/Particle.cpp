@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <iomanip>
 
 using namespace psolib;
 
@@ -51,6 +52,7 @@ void Particle::Copy(const Particle& orig_)
   eval = orig_.eval;
 
   score = orig_.score;
+  last_score = orig_.last_score;
   evaluated = orig_.evaluated;
   neval = orig_.neval;
 }
@@ -74,6 +76,7 @@ double Particle::Evaluate(bool flag_)
   if(!evaluated || flag_){
     if(eval) { 
       neval++; 
+      last_score = score;
       score = (*eval)(*position); 
     }
     evaluated = true;

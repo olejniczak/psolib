@@ -4,7 +4,7 @@
 #include <vector>
 #include <cassert>
 
-#include <boost/lexical_cast.hpp>
+#include <boost/format.hpp>
 
 namespace psolib {
 
@@ -211,11 +211,7 @@ RealVelocity* RealParticle::SubPos(const Position& pos1_, const Position& pos2_)
 
 std::string RealParticle::ToString() const
 {
-  std::string ret = "f(";
-  ret += boost::lexical_cast<std::string>(GetPos()[0]);
-  ret += ", ";
-  ret += boost::lexical_cast<std::string>(GetPos()[1]);
-  ret += ") = ";
-  ret += boost::lexical_cast<std::string>(Score());
-  return ret;
+  return (boost::format("%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f")
+                        % GetPos()[0] % GetPos()[1] % Score()
+                        % GetVel()[0] % GetVel()[1] % (last_score-Score())).str();
 }

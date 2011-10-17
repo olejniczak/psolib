@@ -1,6 +1,8 @@
 #include "optsuite.h"
 #include <random.hpp>  
 #include <iostream>
+#include <fstream>
+#include "gnuplot.h"
 
 optimization_suite::optimization_suite() 
   : real_particle(2, Evaluator), pso(0)
@@ -9,7 +11,6 @@ optimization_suite::optimization_suite()
   parser.DefineVar("x", &x);
   parser.DefineVar("y", &y);
 }
-
 
 optimization_suite::~optimization_suite() 
 { 
@@ -24,16 +25,26 @@ void optimization_suite::init(double minx_, double maxx_, double miny_, double m
   maxy = maxy_;
   if (pso) delete pso;
   pso = new psolib::PSO(real_particle, count_);
-  parser.SetExpr(obj_fun_);
+  parser.SetExpr(obj_fun_);  
+  pso->Initialize();                                                                                                                   
+  std::cout << "Initial swarm:" << std::endl << *pso;                                                                                    
 }
   
 void optimization_suite::optimize()
 {
-  pso->Initialize();                                                                                                                   
-  std::cout << "Initial swarm:" << std::endl << *pso << std::endl;                                                                                    
   pso->Optimize();                                                                                                                     
   std::cout << "Optimized swarm:" << std::endl  << *pso << std::endl;                          
 }  
+  
+void optimization_suite::step(int count_)
+{
+  for (int i = 0; i < count_ && !pso->Done(); ++i) pso->Step();
+  std::cout << "\nSwarm:" << std::endl  << *pso;       
+  std::ofstream ofs("swarm");
+  ofs << *pso;
+   plot << "load '~/contour.dat'";
+  plot.flush();
+}
   
 void optimization_suite::Initializer(psolib::Particle& particle_)                                                                                
 {                                                                                                                                   

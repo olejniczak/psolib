@@ -7,7 +7,7 @@
 class gnuplot
 {
 public:
-  gnuplot(const std::string&);
+  gnuplot(const std::string& path_="/usr/bin/");
   ~gnuplot();
   bool valid() const { return pipe; }
   void flush() { std::fflush(pipe); }

@@ -27,7 +27,7 @@
 
 namespace psolib {
 
-    class Velocity
+  class Velocity
   {
     public:
       virtual ~Velocity() = 0;
@@ -136,7 +136,7 @@ namespace psolib {
       int Nevals() const { return neval; }
       double Score() const { return score; }
       double Score() { Evaluate(); return score; }
-      double Score(double s_) { evaluated = true; return score = s_; }
+      double Score(double s_) { evaluated = true; last_score = score;  score = s_; }
       virtual const Particle& UpdateBest();
       virtual std::string ToString() const { return ""; }
     protected:
@@ -148,6 +148,7 @@ namespace psolib {
       Evaluator_t   eval;
 
       double score;			    //!< value returned by the objective function
+      double last_score;
       bool evaluated;		    //!< has this particle been evaluated?
       size_t neval;		      //!< how many evaluations since initialization?
 
