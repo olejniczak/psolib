@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "psolib", "psolib.vcxproj", "{2653C803-8DF4-41ED-AA4D-A6A7129367A8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testapp", "testapp.vcxproj", "{9FD7E807-9FDC-4DE5-A5BE-8DE95E904F8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2653C803-8DF4-41ED-AA4D-A6A7129367A8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2653C803-8DF4-41ED-AA4D-A6A7129367A8}.Debug|Win32.Build.0 = Debug|Win32
+		{2653C803-8DF4-41ED-AA4D-A6A7129367A8}.Release|Win32.ActiveCfg = Release|Win32
+		{2653C803-8DF4-41ED-AA4D-A6A7129367A8}.Release|Win32.Build.0 = Release|Win32
+		{9FD7E807-9FDC-4DE5-A5BE-8DE95E904F8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FD7E807-9FDC-4DE5-A5BE-8DE95E904F8B}.Debug|Win32.Build.0 = Debug|Win32
+		{9FD7E807-9FDC-4DE5-A5BE-8DE95E904F8B}.Release|Win32.ActiveCfg = Release|Win32
+		{9FD7E807-9FDC-4DE5-A5BE-8DE95E904F8B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
