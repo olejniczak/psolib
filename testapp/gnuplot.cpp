@@ -7,7 +7,7 @@
 
 gnuplot::gnuplot(const std::string& path_)
 {
-    pipe = popen((path_ + "gnuplot -persist").c_str(), "w");
+    pipe = popen((path_ + "gnuplot -p").c_str(), "w");
 }
 
 gnuplot::~gnuplot()

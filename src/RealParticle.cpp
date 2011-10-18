@@ -212,6 +212,12 @@ RealVelocity* RealParticle::SubPos(const Position& pos1_, const Position& pos2_)
 std::string RealParticle::ToString() const
 {
   return (boost::format("%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f")
-                        % GetPos()[0] % GetPos()[1] % Score()
-                        % GetVel()[0] % GetVel()[1] % (Score()-last_score)).str();
+                        % (GetPos()[0] - GetVel()[0]) 
+                        % (GetPos()[1] - GetVel()[1]) 
+                        % (last_score)
+
+                        % GetVel()[0] 
+                        % GetVel()[1] 
+                        % (Score()-last_score)
+                       ).str();
 }
