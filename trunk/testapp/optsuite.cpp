@@ -2,6 +2,7 @@
 #include <random.hpp>  
 #include <iostream>
 #include <fstream>
+#include <boost/format.hpp>
 #include "gnuplot.h"
 
 optimization_suite::optimization_suite() 
@@ -27,7 +28,24 @@ void optimization_suite::init(double minx_, double maxx_, double miny_, double m
   pso = new psolib::PSO(real_particle, count_);
   parser.SetExpr(obj_fun_);  
   pso->Initialize();                                                                                                                   
-  std::cout << "Initial swarm:" << std::endl << *pso;                                                                                    
+  std::cout << "Initial swarm:" << std::endl << *pso;
+  plot << "set logscale z 10"
+       << "set isosamples 50, 50"
+       << "set contour base"
+       << "unset clabel"
+       << "set xlabel \"x\" "
+       << "set ylabel \"y\""
+       << "!mkdir frames"
+       << "!cd frames"
+       //<< "counter = 0"
+       << "set term jpeg size 1280,720 font 'Verdana,12'";
+
+  std::ofstream ofs("swarm");
+  ofs << *pso;
+  ofs.flush();
+  plot << "set output 'frames\\frame_000.jpg'"
+       << "splot [-19:19] [-19:19] (x**2+y-11)**2 + (x+y**2-7)**2, 'swarm' using 1:2:6 with points";
+  plot.flush();
 }
   
 void optimization_suite::optimize()
@@ -42,7 +60,12 @@ void optimization_suite::step(int count_)
   std::cout << "\nSwarm:" << std::endl  << *pso;       
   std::ofstream ofs("swarm");
   ofs << *pso;
-   plot << "load '~/contour.dat'";
+  ofs.flush();
+
+  static int counter = 1;
+
+  plot << (boost::format("set output 'frames\\frame_%03d.jpg'") % counter++).str()
+       << "splot [-19:19] [-19:19] (x**2+y-11)**2 + (x+y**2-7)**2, 'swarm' with vectors";
   plot.flush();
 }
   

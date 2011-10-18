@@ -37,7 +37,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Debug\psolib.lib" />
     <Library Include="..\..\..\muparser_v2_0_0\lib\muparserd.lib" />
+    <Library Include="Debug\psolib.lib" />
   </ItemGroup>
 </Project>
