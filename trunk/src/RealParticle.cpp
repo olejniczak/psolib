@@ -213,5 +213,5 @@ std::string RealParticle::ToString() const
 {
   return (boost::format("%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f")
                         % GetPos()[0] % GetPos()[1] % Score()
-                        % GetVel()[0] % GetVel()[1] % (last_score-Score())).str();
+                        % GetVel()[0] % GetVel()[1] % (Score()-last_score)).str();
 }
