@@ -1,5 +1,5 @@
-#ifndef __gnuplot_h__
-#define __gnuplot_h__
+#ifndef GNUPLOT_H
+#define GNUPLOT_H
 
 #include <cstdio>
 #include <string>
@@ -7,15 +7,18 @@
 class gnuplot
 {
 public:
-  gnuplot(const std::string& path_="/usr/bin/");
+  gnuplot(const std::string& plot_cmd_);
   ~gnuplot();
-  bool valid() const { return pipe; }
+  bool valid() const { return pipe != 0; }
   void flush() { std::fflush(pipe); }
   gnuplot& operator << (const std::string&);
+  void plot();
 private:
   void command(const std::string&);
 private:
-  FILE* pipe;
+  FILE*       pipe;
+  std::string data_file;
+  std::string plot_command;
 };
 
 #endif

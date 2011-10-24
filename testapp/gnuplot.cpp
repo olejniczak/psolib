@@ -5,24 +5,31 @@
   #define pclose _pclose
 #endif
 
-gnuplot::gnuplot(const std::string& path_)
+gnuplot::gnuplot(const std::string& plot_cmd_)
+  : plot_command(plot_cmd_)
 {
-    pipe = popen((path_ + "gnuplot -p").c_str(), "w");
+  pipe = popen("gnuplot -p", "w");
 }
 
 gnuplot::~gnuplot()
 {
-    command("exit");
-    pclose(pipe);
+  command("exit");
+  pclose(pipe);
 }
 
 void gnuplot::command(const std::string& cmd_)
 {
-    fprintf(pipe, (cmd_ + "\n").c_str());
+  fprintf(pipe, (cmd_ + "\n").c_str());
 }
 
 gnuplot& gnuplot::operator << (const std::string& cmd_)
 {
-    command(cmd_);
-    return *this;
+  command(cmd_);
+  return *this;
+}
+
+void gnuplot::plot()
+{
+  command(plot_command);
+  flush();
 }

@@ -46,6 +46,7 @@ namespace psolib {
     public:
       typedef bool (*Terminator_t)(Algorithm&);
       static bool TerminateUponGeneration(Algorithm&);
+      static bool TerminateUponConvergence(Algorithm&);
     public:
       Algorithm(const Particle& particle_, size_t size_, MinMax mm_ = Minimize);
       virtual ~Algorithm() = 0;
@@ -59,7 +60,7 @@ namespace psolib {
 
       MinMax MiniMaxi() const { return minimaxi; } 
       double Convergence() const { return convergence; }
-      double ConvergencePerc() const { return conv_perc; }
+      double ConvergenceDiff() const { return conv_diff; }
     protected:
       virtual void RegisterParameters();
       size_t Iteration() const { return curr_iter; }
@@ -71,14 +72,13 @@ namespace psolib {
       size_t       iter_count; 
       size_t       curr_iter;
       int          conv_count;
-      double       conv_perc;
+      double       conv_diff;
       double       convergence;
       bests_buf    bests;
       MinMax       minimaxi;
       Swarm        swarm;
       Particle*    gbest;
       Parameters   params;
-      Statistics   stats;
 
       friend std::ostream& operator<<(std::ostream&, const Algorithm&);
   };

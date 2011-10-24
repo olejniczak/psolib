@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\testapp\gnuplot.h" />
     <ClInclude Include="..\..\testapp\optsuite.h" />
+    <ClInclude Include="..\..\testapp\plot.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\testapp\gnuplot.cpp" />

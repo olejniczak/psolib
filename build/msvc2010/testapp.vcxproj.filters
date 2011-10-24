@@ -24,6 +24,9 @@
     <ClInclude Include="..\..\testapp\optsuite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\testapp\plot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\testapp\gnuplot.cpp">
