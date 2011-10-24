@@ -79,7 +79,6 @@
     <ClCompile Include="..\..\src\PSO.cpp" />
     <ClCompile Include="..\..\src\random.cpp" />
     <ClCompile Include="..\..\src\RealParticle.cpp" />
-    <ClCompile Include="..\..\src\Statistics.cpp" />
     <ClCompile Include="..\..\src\Swarm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +90,6 @@
     <ClInclude Include="..\..\include\PSO.hpp" />
     <ClInclude Include="..\..\include\random.hpp" />
     <ClInclude Include="..\..\include\RealParticle.hpp" />
-    <ClInclude Include="..\..\include\Statistics.hpp" />
     <ClInclude Include="..\..\include\Swarm.hpp" />
     <ClInclude Include="..\..\src\Scaling.hpp" />
   </ItemGroup>
