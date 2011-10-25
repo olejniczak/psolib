@@ -36,6 +36,8 @@ void optimization_suite::load_from_file(const std::string& filename_)
   maxx = pt.get<double>("optimization.range.maxx");
   miny = pt.get<double>("optimization.range.miny");
   maxy = pt.get<double>("optimization.range.maxy");
+  dump = pt.get<bool>("optimization.options.dump");
+  dump_file = pt.get<std::string>("optimization.options.dump_file");
   std::string range = (boost::format("[%f:%f][%f:%f]") % minx % maxx % miny %maxy).str();
   objective_function = pt.get<std::string>("optimization.objective_function");
   parser.SetExpr(objective_function);
@@ -43,45 +45,43 @@ void optimization_suite::load_from_file(const std::string& filename_)
   swarm_size = pt.get<int>("optimization.swarm_size");
   iterations = pt.get<int>("optimization.iterations");
 
+  BOOST_FOREACH(ptree::value_type &v, pt.get_child("optimization.parameters")) {
+    algorithm->SetParameter(v.first.data(), v.second.data());    
+  }
+  algorithm->UpdateParameters();
   algorithm->Initialize();
 
-  /*
-  BOOST_FOREACH(ptree::value_type &v,
-          pt.get_child("optimization.parameters"))
-      m_modules.insert(v.second.data());
-  */
-  plots.clear();
-  plots.reserve(pt.get_child("optimization.plots").size());
-  BOOST_FOREACH(ptree::value_type &pl, pt.get_child("optimization.plots")) {
-    std::string init_command = pl.second.get_child("init_command").data();
-    std::string plot_command = pl.second.get_child("plot_command").data();
-    replace_tokens(init_command, range_token, range);
-    replace_tokens(init_command, obj_fun_token, objective_function);
-    replace_tokens(init_command, swarm_token, swarm_filename);
-    replace_tokens(plot_command, range_token, range);
-    replace_tokens(plot_command, obj_fun_token, objective_function);
-    replace_tokens(plot_command, swarm_token, swarm_filename);
-    plots.push_back(pplot(new gnuplot(plot_command)));
-    BOOST_FOREACH(ptree::value_type &def, pl.second.get_child("definition")) {
-      *plots.back() << def.second.data();
-    }
+  init_command = pt.get<std::string>("optimization.plot.init_command");
+  plot_command = pt.get<std::string>("optimization.plot.plot_command");
+  replace_tokens(init_command, range_token, range);
+  replace_tokens(init_command, obj_fun_token, objective_function);
+  replace_tokens(init_command, swarm_token, swarm_filename);
+  replace_tokens(plot_command, range_token, range);
+  replace_tokens(plot_command, obj_fun_token, objective_function);
+  replace_tokens(plot_command, swarm_token, swarm_filename);
+  BOOST_FOREACH(ptree::value_type &def, pt.get_child("optimization.plot.definition")) {
+    plot << def.second.data();
   }
 }
 
 void optimization_suite::optimize()
 {
   algorithm->Optimize();                                                                                                                     
-  std::cout << "Optimized swarm:" << std::endl  << *algorithm << std::endl;                          
 }  
   
-void optimization_suite::step(int count_)
+void optimization_suite::step(int count_, bool silent_)
 {
   for (int i = 0; i < count_ && !algorithm->Done(); ++i) algorithm->Step();
-  std::cout << "\nSwarm:" << std::endl  << *algorithm;       
+  if (!silent_) std::cout << "\nIteration " << algorithm->Iteration() << " swarm:" << std::endl  << *algorithm << std::endl;
   std::ofstream ofs(swarm_filename);
   ofs << *algorithm;
   ofs.flush();
-  plots.back()->plot();
+  plot << plot_command;
+  if (dump) {
+    std::ofstream ofs((boost::format(dump_file) % algorithm->Iteration()).str());
+    ofs << *algorithm;
+    ofs.flush();
+  }
 }
   
 void optimization_suite::Initializer(psolib::Particle& particle_)                                                                                
@@ -121,4 +121,10 @@ void optimization_suite::replace_tokens(std::string& cmd_, const std::string& to
     cmd_.erase(x, token_.length());
 		cmd_.insert(x, value_);
   }
+}
+
+void optimization_suite::show_result() const
+{
+  std::cout << "Number of iterations: " << algorithm->Iteration() << std::endl;
+  std::cout << "Optimized swarm: " << std::endl << *algorithm << std::endl;
 }

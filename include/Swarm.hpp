@@ -40,6 +40,7 @@ namespace psolib {
       Particle& operator[](size_t);
       const Particle& operator[](size_t) const;
       const Particle& GetBest() const;
+      const Particle& GetWorst() const;
       const Particle& Sort();
     public:
       void Initialize();

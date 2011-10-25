@@ -5,10 +5,9 @@
   #define pclose _pclose
 #endif
 
-gnuplot::gnuplot(const std::string& plot_cmd_)
-  : plot_command(plot_cmd_)
+gnuplot::gnuplot()
 {
-  pipe = popen("gnuplot -p", "w");
+  pipe = popen("gnuplot -p > NULL 2>&1", "w");
 }
 
 gnuplot::~gnuplot()
@@ -20,16 +19,11 @@ gnuplot::~gnuplot()
 void gnuplot::command(const std::string& cmd_)
 {
   fprintf(pipe, (cmd_ + "\n").c_str());
+  fflush(pipe);
 }
 
 gnuplot& gnuplot::operator << (const std::string& cmd_)
 {
   command(cmd_);
   return *this;
-}
-
-void gnuplot::plot()
-{
-  command(plot_command);
-  flush();
 }

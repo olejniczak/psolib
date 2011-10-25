@@ -1,3 +1,18 @@
+/**
+ * optimization_suite
+ * Singleton class for performing a single optimization
+ * You can define objective function, search space range
+ *
+ * See <WEBSITE> for documentation.
+ *
+ * @author Copyright &copy 2011 Przemys³aw Olejniczak.
+ * @version <VERSION>
+ * @date <DATE>
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
+ *
+ */
 #ifndef OPTSUITE_H
 #define OPTSUITE_H
 
@@ -29,9 +44,10 @@ public:
   }
   void load_from_file(const std::string& filename_);
   void optimize();
-  void step(int count_ = 1);
+  void step(int count_ = 1, bool silent_ = false);
   bool done() { return algorithm->Done(); }
   bool ready();
+  void show_result() const;
 private:
   void replace_tokens(std::string& cmd_, const std::string& token_, const std::string& value_);
 private:
@@ -39,12 +55,15 @@ private:
   std::string          objective_function;
   int                  swarm_size;
   int                  iterations;
+  bool                 dump;
+  std::string          dump_file;
   psolib::RealParticle particle;
   psolib::Algorithm*   algorithm;
   mu::Parser           parser;
   double               x, y;
-  typedef boost::shared_ptr<gnuplot> pplot;
-  std::vector<pplot>   plots;
+  gnuplot              plot;
+  std::string          init_command;
+  std::string          plot_command;
 };
 
 #endif
