@@ -20,11 +20,17 @@ bool Algorithm::TerminateUponConvergence(Algorithm& algorithm)
   return algorithm.Convergence() < algorithm.conv_diff;
 }
 
+bool Algorithm::TerminateUponSwarmConvergence(Algorithm& algorithm)
+{
+  if (algorithm.curr_iter < algorithm.conv_count) return false;
+  return algorithm.SwarmConvergence() < algorithm.conv_diff;
+}
+
 Algorithm::Algorithm(const Particle& particle_, size_t size_, MinMax mm_)
   : minimaxi(mm_), swarm_size(size_), swarm(particle_, size_, mm_),
-    iter_count(500), curr_iter(0), conv_count(10), conv_diff(0.0001), 
+    iter_count(500), curr_iter(0), conv_count(10), conv_diff(0.01), 
     bests(conv_count, 0), convergence(0),
-    terminator(&TerminateUponConvergence)
+    terminator(&TerminateUponSwarmConvergence)
 {
   RegisterParameters();
 }
@@ -52,7 +58,8 @@ void Algorithm::Step()
   }
   swarm.Evaluate(true);
   bests.push_back(swarm.GetBest().Score());
-  convergence = std::fabs(bests.front() - bests.back());
+  convergence = std::max_element(bests.begin(), bests.end()) - std::min_element(bests.begin(), bests.end());
+  swarm_convergence = std::fabs(swarm.GetWorst().Score() - swarm.GetBest().Score());
   ++curr_iter;
 }
 
@@ -66,6 +73,7 @@ void Algorithm::RegisterParameters()
 
 void Algorithm::UpdateParameters()
 {
+  swarm_size = params.Get<int>("swarm_size");
   iter_count = params.Get<int>("iter_count");
   conv_diff  = params.Get<double>("conv_diff");
   conv_count = params.Get<int>("conv_count");

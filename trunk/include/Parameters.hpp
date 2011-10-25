@@ -100,7 +100,6 @@ namespace psolib {
         dirty = false;
         return ret;
       }
-    private:
       /**
        *
        */

@@ -75,6 +75,11 @@ const Particle& Swarm::GetBest() const
   return *particles.front().get();
 }
 
+const Particle& Swarm::GetWorst() const
+{
+  return *particles.back().get();
+}
+
 const Particle& Swarm::Sort()
 {
   std::sort(particles.begin(), particles.end(), Comparator(minmax));

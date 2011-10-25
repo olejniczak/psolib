@@ -43,7 +43,7 @@ void PSO::RegisterParameters()
   Algorithm::RegisterParameters();
   params.Add<double>("inertia", inertia);
   params.Add<double>("particle_learn", particle_learn);
-  params.Add<double>("particle_learn", swarm_learn);
+  params.Add<double>("swarm_learn", swarm_learn);
 }
 
 void PSO::UpdateParameters()
@@ -51,6 +51,6 @@ void PSO::UpdateParameters()
   Algorithm::UpdateParameters();
   inertia        = params.Get<double>("inertia");
   particle_learn = params.Get<double>("particle_learn");
-  swarm_learn    = params.Get<double>("particle_learn");
+  swarm_learn    = params.Get<double>("swarm_learn");
 }
 
