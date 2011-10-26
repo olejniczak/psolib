@@ -15,9 +15,6 @@
 #include <iomanip>
 #include "optsuite.h"
 #include <PSO.hpp>
-#include "plot.h"
-
-#include <windows.h>
 
 using namespace std;
 

@@ -78,7 +78,7 @@ void optimization_suite::step(int count_, bool silent_)
   ofs.flush();
   plot << plot_command;
   if (dump) {
-    std::ofstream ofs((boost::format(dump_file) % algorithm->Iteration()).str());
+    std::ofstream ofs((boost::format(dump_file) % algorithm->Iteration()).str().c_str());
     ofs << *algorithm;
     ofs.flush();
   }
