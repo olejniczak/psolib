@@ -1,5 +1,6 @@
 #include "Algorithm.hpp"
 #include "Particle.hpp"
+#include <cmath>
 
 using namespace psolib;
 
