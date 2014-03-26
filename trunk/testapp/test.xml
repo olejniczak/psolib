@@ -24,12 +24,13 @@
 	</parameters>
 	<plot>
 		<definition>
+			<cmd>set term x11</cmd>
 			<cmd>set logscale z 10</cmd>
 			<cmd>set isosamples 50, 50</cmd>
 			<cmd>set contour base</cmd>
 			<cmd>unset clabel</cmd>
-			<cmd>set xlabel \"x\"</cmd>
-			<cmd>set ylabel \"y\"</cmd>
+			<cmd>set xlabel "x"</cmd>
+			<cmd>set ylabel "y"</cmd>
 		</definition>
 		<init_command>splot %RANGE% %OBJECTIVE_FUNCTION%, '%SWARM%' using 1:2:6 with points</init_command>
 		<plot_command>splot %RANGE% %OBJECTIVE_FUNCTION%, '%SWARM%' with vectors</plot_command>

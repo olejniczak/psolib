@@ -7,7 +7,8 @@
 
 gnuplot::gnuplot()
 {
-  pipe = popen("gnuplot -p > NULL 2>&1", "w");
+  //pipe = popen("gnuplot -p > NULL 2>&1", "w");
+  pipe = popen("gnuplot -p", "w");
 }
 
 gnuplot::~gnuplot()

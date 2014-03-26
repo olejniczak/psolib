@@ -20,7 +20,7 @@
 #include <boost/shared_ptr.hpp>
 #include <RealParticle.hpp>
 #include <Algorithm.hpp>
-#include <muParser/muParser.h>
+#include <muParser.h>
 #include "gnuplot.h"
 
 class optimization_suite
