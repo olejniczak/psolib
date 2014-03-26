@@ -1,3 +1,4 @@
+project(psolib)
 SET(psolib_SOURCES 
   Algorithm.cpp
   Parameters.cpp
