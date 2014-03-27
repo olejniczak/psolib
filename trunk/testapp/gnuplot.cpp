@@ -7,8 +7,12 @@
 
 gnuplot::gnuplot()
 {
-  //pipe = popen("gnuplot -p > NULL 2>&1", "w");
+#if defined(_WIN32) || defined(_WIN64)
+  pipe = popen("gnuplot -p > NULL 2>&1", "w");
+#else
   pipe = popen("gnuplot -p", "w");
+  command("set term x11");
+#endif
 }
 
 gnuplot::~gnuplot()
