@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<optimization>
+	<options>
+		<dump>1</dump>
+		<dump_file>swarm_%05d.dat</dump_file>
+	</options>
+	<range>
+		<minx>-10</minx>
+		<maxx>10</maxx>
+		<miny>-10</miny>
+		<maxy>10</maxy>
+	</range>
+	<objective_function>(1-x)^2+100*(1-x*x)^2</objective_function>
+	<swarm_size>20</swarm_size>
+	<iterations>500</iterations>
+	<parameters>
+		<swarm_size>20</swarm_size>
+		<iter_count>500</iter_count>
+		<conv_diff>0.01</conv_diff>
+		<conv_count>50</conv_count>
+		<inertia>0.4</inertia>
+		<particle_learn>2</particle_learn>
+		<swarm_learn>2</swarm_learn>
+	</parameters>
+	<plot>
+		<definition>
+			<cmd>set term x11</cmd>
+			<cmd>set logscale z 10</cmd>
+			<cmd>set isosamples 50, 50</cmd>
+			<cmd>set contour base</cmd>
+			<cmd>unset clabel</cmd>
+			<cmd>set xlabel "x"</cmd>
+			<cmd>set ylabel "y"</cmd>
+		</definition>
+		<init_command>splot %RANGE% %OBJECTIVE_FUNCTION%, '%SWARM%' using 1:2:6 with points</init_command>
+		<plot_command>splot %RANGE% %OBJECTIVE_FUNCTION%, '%SWARM%' with vectors</plot_command>
+	</plot>
+</optimization>
