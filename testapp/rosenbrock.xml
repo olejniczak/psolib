@@ -10,7 +10,7 @@
 		<miny>-2</miny>
 		<maxy>2</maxy>
 	</range>
-	<objective_function>(1-x)^2+100*(1-x*x)^2</objective_function>
+	<objective_function>(1-x)^2+100*(y-x*x)^2</objective_function>
 	<swarm_size>20</swarm_size>
 	<iterations>500</iterations>
 	<parameters>
